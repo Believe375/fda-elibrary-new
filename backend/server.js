@@ -1,49 +1,38 @@
 const express = require('express');
-const path = require('path');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path');
 
-const authRoutes = require('./routes/authRoutes');
-const bookRoutes = require('./routes/bookRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const userRoutes = require('./routes/userRoutes');
-
-dotenv.config();
+// Init app
 const app = express();
+dotenv.config();
+
+// Connect to DB
 connectDB();
 
 // Middlewares
+app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-// Static file serving
+// Static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, 'frontend'))); // <-- serves all frontend pages
+app.use('/', express.static(path.join(__dirname, '../frontend')));
 
-// API Routes
+// Routes
+const authRoutes = require('./routes/authRoutes');
+const bookRoutes = require('./routes/bookRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
-app.use('/api/categories', categoryRoutes);
 app.use('/api/users', userRoutes);
 
-// Frontend Routes (fallback for single-page app or direct links)
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
-});
-
-app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'about.html'));
-});
-
-app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'admin', 'admin.html'));
-});
-
-// Server listen
+// Start server
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
