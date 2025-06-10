@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FDA E-library Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="icon" type="image/png" href="assests/fda-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="header-left">
+      <img src="assests/fda-logo.png" alt="FDA Logo" class="logo-img" />
+    </div>
+    <div class="header-center">
+      <h1>FDA E-library Admin Dashboard</h1>
+      <p class="subtitle">Manage publications, categories, and uploads</p>
+    </div>
+    <div class="header-right">
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-section">
+      <h2>Upload New Book</h2>
+      <form id="uploadForm">
+        <input type="text" id="title" placeholder="Book Title" required />
+        <select id="category" required>
+          <option value="">Select Category</option>
+          <option value="Reports">Reports</option>
+          <option value="Research">Research</option>
+          <option value="Policy">Policy</option>
+          <option value="Announcements">Announcements</option>
+        </select>
+        <input type="number" id="year" placeholder="Year (e.g. 2025)" required min="1900" max="2099"/>
+        <input type="file" id="file" accept=".pdf,.doc,.docx" required />
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Uploaded Books</h2>
+      <div id="bookList" class="archive-list">
+        <!-- Dynamic book list will be inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="yearNow"></span> Food and Drugs Authority Ghana. All rights reserved.</p>
+  </footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    document.getElementById('yearNow').textContent = new Date().getFullYear();
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+    });
+  </script>
+</body>
+</html>

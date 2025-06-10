@@ -1,33 +1,28 @@
 const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+const path = require('path');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path');
+const connectDB = require('./config/db');
 
-// Route imports
 const authRoutes = require('./routes/authRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-// Load environment variables
 dotenv.config();
-
 const app = express();
+connectDB();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Middlewares
 app.use(helmet());
 app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded files
+// Static file serving
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'frontend'))); // <-- serves all frontend pages
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -35,25 +30,21 @@ app.use('/api/books', bookRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/users', userRoutes);
 
-// Serve frontend on all unmatched routes (for SPA routing)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+// Frontend Routes (fallback for single-page app or direct links)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-// MongoDB connection and server start
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'about.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'admin', 'admin.html'));
+});
+
+// Server listen
 const PORT = process.env.PORT || 5500;
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log(' MongoDB connected');
-    app.listen(PORT, () => {
-      console.log( `Server running at http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error(' MongoDB connection error:', err.message);
-    process.exit(1);
-  });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

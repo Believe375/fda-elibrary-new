@@ -1,0 +1,201 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f4f6fa;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #00264d;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+  color: white;
+}
+.admin-header .header-left,
+.admin-header .header-center,
+.admin-header .header-right {
+  margin: 0.5rem 0;
+}
+.logo-img {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+}
+.admin-header .header-center {
+  flex: 1;
+  text-align: center;
+}
+.admin-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+.header-right button {
+  background: #ffcc00;
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.header-right button:hover {
+  opacity: 0.9;
+}
+
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Upload Form */
+.upload-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+}
+.upload-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  color: #00264d;
+}
+#uploadForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#uploadForm input,
+#uploadForm select,
+#uploadForm button {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1 1 250px;
+}
+#uploadForm button {
+  background: #00264d;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+#uploadForm button:hover {
+  background: #001933;
+}
+
+/* Book List */
+.list-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #00264d;
+}
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.archive-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #00264d;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.2s ease;
+}
+.archive-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.archive-card .info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.archive-card .meta {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+.archive-card .actions .btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn.view {
+  background: #ffcc00;
+  color: #000;
+  border: none;
+}
+.btn.download {
+  background: #00264d;
+  color: white;
+  border: none;
+}
+.btn.delete {
+  background: #cc0000;
+  color: white;
+  border: none;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #f0f0f0;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .archive-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .archive-card .actions {
+    margin-top: 1rem;
+  }
+
+  #uploadForm {
+    flex-direction: column;
+  }
+
+  .header-right {
+    width: 100%;
+    text-align: right;
+  }
+}
