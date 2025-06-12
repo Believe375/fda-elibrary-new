@@ -1,27 +1,32 @@
-const jwt = require('jsonwebtoken');
+// middleware/authMiddleware.js
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
 
-const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith("Bearer ")) {
-    const token = authHeader.split(" ")[1];
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) return res.status(403).json("Token is invalid!");
+const protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      token = req.headers.authorization.split(" ")[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.id);
+
+      if (!user || !user.isAdmin) {
+        return res.status(401).json({ message: "Not authorized as admin" });
+      }
+
       req.user = user;
       next();
-    });
+    } catch (error) {
+      console.error("Token verification failed:", error);
+      res.status(401).json({ message: "Token failed or unauthorized" });
+    }
   } else {
-    return res.status(401).json("You are not authenticated!");
+    res.status(401).json({ message: "No token provided" });
   }
 };
 
-const verifyAdmin = (req, res, next) => {
-  verifyToken(req, res, () => {
-    if (req.user.isAdmin) {
-      next();
-    } else {
-      return res.status(403).json("Admin access only!");
-    }
-  });
-};
-
-module.exports = { verifyToken, verifyAdmin };
+module.exports = protect;

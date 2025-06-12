@@ -1,42 +1,53 @@
-const mongoose = require('mongoose');
+// controllers/bookController.js
+const Book = require('../models/Book');
+const path = require('path');
 
-const bookSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: 200
-  },
-  author: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: 100
-  },
-  category: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  description: {
-    type: String,
-    trim: true,
-    maxlength: 1000
-  },
-  imageUrl: {
-    type: String,
-    trim: true
-  },
-  fileUrl: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  uploadedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+// GET /api/books - Public: get all books
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find().sort({ createdAt: -1 });
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
   }
-}, { timestamps: true });
+};
 
-module.exports = mongoose.model('Book', bookSchema);
+// POST /api/books/upload - Admin: upload new book
+const uploadBook = async (req, res) => {
+  try {
+    const { title, category } = req.body;
+
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+
+    const fileUrl = `/uploads/${req.file.filename}`;
+    const book = new Book({
+      title,
+      category,
+      date: new Date().toLocaleString('default', { month: 'long', year: 'numeric' }),
+      year: new Date().getFullYear().toString(),
+      fileUrl
+    });
+
+    await book.save();
+    res.status(201).json(book);
+  } catch (err) {
+    res.status(500).json({ error: 'Upload failed' });
+  }
+};
+
+// DELETE /api/books/:id - Admin: delete a book
+const deleteBook = async (req, res) => {
+  try {
+    const book = await Book.findByIdAndDelete(req.params.id);
+    if (!book) return res.status(404).json({ error: 'Book not found' });
+    res.json({ message: 'Book deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Delete failed' });
+  }
+};
+
+module.exports = {
+  getAllBooks,
+  uploadBook,
+  deleteBook
+};
