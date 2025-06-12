@@ -3,14 +3,17 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 
-// Public routes
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+//  PUBLIC ROUTES
+router.post('/register', authController.register);        // Anyone can register
+router.post('/login', authController.login);              // Anyone can login
 
-// Protected routes
-router.get('/me', verifyToken, authController.getProfile);
+//  AUTHENTICATED USER ROUTE
+router.get('/me', verifyToken, authController.getProfile); // Fetch current user profile
 
-// Admin-only routes
-router.get('/all-users', verifyToken, isAdmin, authController.getAllUsers);
+//  ADMIN-ONLY ROUTES
+router.get('/all-users', verifyToken, isAdmin, authController.getAllUsers); // View all users (Admin only)
+
+// [Optional] Admin can delete a user (Uncomment when needed)
+// router.delete('/delete-user/:id', verifyToken, isAdmin, authController.deleteUser);
 
 module.exports = router;
