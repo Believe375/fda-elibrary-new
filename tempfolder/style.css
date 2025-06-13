@@ -17,10 +17,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #00264d;
+  background: white;
   padding: 1.5rem 2rem;
   flex-wrap: wrap;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 3px solid #2c3594;
 }
 
 .header-left {
@@ -31,13 +32,13 @@ header {
   width: 100px;
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(44, 53, 148, 0.3);
 }
 
 .header-center {
   flex: 2;
   text-align: center;
-  color: white;
+  color: #2c3594;
 }
 .header-center h1 {
   font-size: 2rem;
@@ -63,7 +64,7 @@ header {
   gap: 1.5rem;
 }
 .header-right a {
-  color: #fff;
+  color: #2c3594;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -107,7 +108,7 @@ header {
 .archive-card {
   background: white;
   border: 1px solid #e0e0e0;
-  border-left: 5px solid #00264d;
+  border-left: 5px solid #2c3594;
   border-radius: 6px;
   padding: 1rem 1.5rem;
   display: flex;
@@ -145,11 +146,11 @@ header {
   background: #e6b800;
 }
 .btn.download {
-  background: #00264d;
+  background: #2c3594;
   color: white;
 }
 .btn.download:hover {
-  background: #001933;
+  background: #1d245f;
 }
 
 /* Footer */
@@ -197,7 +198,6 @@ footer {
   }
 }
 
-
 /* About Page Enhancements */
 .about-container {
   background: #fff;
@@ -209,7 +209,7 @@ footer {
 
 .about-container h2 {
   font-size: 2rem;
-  color: #00264d;
+  color: #2c3594;
   margin-bottom: 1rem;
 }
 

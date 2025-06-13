@@ -7,167 +7,143 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #f4f6fa;
+  background-color: #f4f6fa;
   color: #1a1a1a;
   line-height: 1.6;
 }
 
 /* Header */
-.admin-header {
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #00264d;
+  background: #2C3594;
   padding: 1rem 2rem;
   flex-wrap: wrap;
   color: white;
 }
-.admin-header .header-left,
-.admin-header .header-center,
-.admin-header .header-right {
-  margin: 0.5rem 0;
-}
+
 .logo-img {
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   object-fit: contain;
 }
-.admin-header .header-center {
+
+.header-title {
   flex: 1;
   text-align: center;
 }
-.admin-header h1 {
+
+.header-title h1 {
   font-size: 1.6rem;
   font-weight: 700;
 }
-.subtitle {
+
+.header-title .subtitle {
   font-size: 1rem;
   font-weight: 400;
   margin-top: 0.25rem;
-}
-.header-right button {
-  background: #ffcc00;
-  color: #000;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.header-right button:hover {
-  opacity: 0.9;
+  color: #f1c40f;
 }
 
-/* Container */
+/* Admin Container */
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 2rem auto;
-  padding: 0 1rem;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Titles */
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #2C3594;
+  padding-bottom: 0.5rem;
 }
 
 /* Upload Form */
-.upload-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  margin-bottom: 2rem;
-}
-.upload-section h2 {
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
-  color: #00264d;
-}
-#uploadForm {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-#uploadForm input,
-#uploadForm select,
-#uploadForm button {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  flex: 1 1 250px;
-}
-#uploadForm button {
-  background: #00264d;
-  color: white;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-#uploadForm button:hover {
-  background: #001933;
-}
-
-/* Book List */
-.list-section h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: #00264d;
-}
-.archive-list {
+form.upload-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
-.archive-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-left: 5px solid #00264d;
+
+form.upload-form input,
+form.upload-form select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: box-shadow 0.2s ease;
+  font-size: 1rem;
+  width: 100%;
 }
-.archive-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-.archive-card .info h3 {
-  font-size: 1.2rem;
+
+form.upload-form button {
+  background: #2C3594;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
-.archive-card .meta {
-  font-size: 0.9rem;
-  color: #555;
-  margin-top: 0.25rem;
+
+form.upload-form button:hover {
+  background: #1e2569;
 }
-.archive-card .actions .btn {
-  padding: 0.5rem 1rem;
+
+/* Archive Table */
+.archive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.archive-table th,
+.archive-table td {
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.archive-table th {
+  background-color: #2C3594;
+  color: white;
+}
+
+.archive-table td.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.archive-table .btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
   border-radius: 4px;
   text-decoration: none;
-  margin-left: 0.5rem;
-  font-size: 0.9rem;
   cursor: pointer;
+  border: none;
 }
+
 .btn.view {
-  background: #ffcc00;
+  background: #f1c40f;
   color: #000;
-  border: none;
 }
-.btn.download {
-  background: #00264d;
-  color: white;
-  border: none;
-}
+
 .btn.delete {
-  background: #cc0000;
+  background: #e74c3c;
   color: white;
-  border: none;
-}
-.btn:hover {
-  opacity: 0.9;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   background: #f0f0f0;
   font-size: 0.9rem;
   color: #555;
@@ -176,26 +152,16 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .admin-header {
+  header {
     flex-direction: column;
     text-align: center;
   }
 
-  .archive-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .archive-card .actions {
-    margin-top: 1rem;
-  }
-
-  #uploadForm {
+  .archive-table td.actions {
     flex-direction: column;
   }
 
-  .header-right {
-    width: 100%;
-    text-align: right;
+  form.upload-form {
+    gap: 0.75rem;
   }
 }
