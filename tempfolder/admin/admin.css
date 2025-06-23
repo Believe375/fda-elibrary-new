@@ -35,15 +35,31 @@ header {
 }
 
 .header-title h1 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
 }
 
 .header-title .subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #f1c40f;
+  margin-top: 0.25rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+nav a:hover {
+  text-decoration: underline;
 }
 
 /* Main Container */
@@ -53,7 +69,7 @@ header {
   padding: 2rem;
   background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* Section Titles */
@@ -70,7 +86,7 @@ form.upload-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 form.upload-form input,
@@ -90,8 +106,8 @@ form.upload-form select:focus {
 }
 
 form.upload-form button {
-  background: #2C3594;
-  color: #fff;
+  background: #f1c40f;
+  color: #000;
   border: none;
   padding: 0.75rem 1.2rem;
   font-size: 1rem;
@@ -102,7 +118,7 @@ form.upload-form button {
 }
 
 form.upload-form button:hover {
-  background: #1e2569;
+  background: #d4af0f;
 }
 
 /* Archive Table */
@@ -150,16 +166,14 @@ form.upload-form button:hover {
   background: #f1c40f;
   color: #000;
 }
-
 .btn.view:hover {
-  background: #e0b800;
+  background: #d4af0f;
 }
 
 .btn.delete {
   background: #e74c3c;
   color: white;
 }
-
 .btn.delete:hover {
   background: #c0392b;
 }
