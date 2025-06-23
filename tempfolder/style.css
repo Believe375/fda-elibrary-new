@@ -5,11 +5,17 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   font-family: 'Inter', sans-serif;
   background: #f4f6fa;
   color: #1a1a1a;
   line-height: 1.6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header Styles */
@@ -17,16 +23,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: #ffffff;
   padding: 1.5rem 2rem;
   flex-wrap: wrap;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-bottom: 3px solid #2c3594;
+  border-bottom: 4px solid #2c3594;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-left {
   flex: 1;
 }
+
 .logo-img {
   height: 100px;
   width: 100px;
@@ -40,12 +50,14 @@ header {
   text-align: center;
   color: #2c3594;
 }
+
 .header-center h1 {
   font-size: 2rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
 .subtitle {
   font-size: 1.1rem;
   font-weight: 500;
@@ -58,17 +70,21 @@ header {
   display: flex;
   justify-content: flex-end;
 }
+
 .header-right ul {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
+
 .header-right a {
   color: #2c3594;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
+  transition: color 0.2s ease;
 }
+
 .header-right a:hover {
   text-decoration: underline;
   color: #ffcc00;
@@ -76,7 +92,8 @@ header {
 
 /* Container */
 .container {
-  max-width: 1100px;
+  flex: 1;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -89,6 +106,7 @@ header {
   margin-bottom: 2rem;
   justify-content: space-between;
 }
+
 .controls input,
 .controls select {
   padding: 0.75rem 1rem;
@@ -105,30 +123,36 @@ header {
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .archive-card {
-  background: white;
+  background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-left: 5px solid #2c3594;
+  border-left: 6px solid #2c3594;
   border-radius: 6px;
   padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
 .archive-card:hover {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
+
 .archive-card .info h3 {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
+  color: #2c3594;
 }
+
 .archive-card .meta {
   font-size: 0.9rem;
-  color: #555;
+  color: #666;
   margin-top: 0.25rem;
 }
+
 .archive-card .actions .btn {
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -138,17 +162,21 @@ header {
   font-weight: 600;
   transition: background 0.2s ease;
 }
+
 .btn.view {
   background: #ffcc00;
   color: #000;
 }
+
 .btn.view:hover {
   background: #e6b800;
 }
+
 .btn.download {
   background: #2c3594;
   color: white;
 }
+
 .btn.download:hover {
   background: #1d245f;
 }
@@ -156,11 +184,11 @@ header {
 /* Footer */
 footer {
   text-align: center;
-  padding: 2rem 1rem;
-  background: #f0f0f0;
+  padding: 1.5rem 1rem;
+  background: #2c3594;
   font-size: 0.95rem;
-  color: #555;
-  margin-top: 4rem;
+  color: #fff;
+  margin-top: auto;
 }
 
 /* Responsive Layout */
