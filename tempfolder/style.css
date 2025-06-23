@@ -43,8 +43,10 @@ header {
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(44, 53, 148, 0.3);
+  background-color: white;
 }
 
+/* Central Header Text */
 .header-center {
   flex: 2;
   text-align: center;
@@ -65,6 +67,7 @@ header {
   margin-top: 0.25rem;
 }
 
+/* Navigation */
 .header-right {
   flex: 1;
   display: flex;
@@ -90,7 +93,7 @@ header {
   color: #ffcc00;
 }
 
-/* Container */
+/* Page Content Container */
 .container {
   flex: 1;
   max-width: 1200px;
@@ -98,7 +101,7 @@ header {
   padding: 0 1rem;
 }
 
-/* Controls Section */
+/* Controls Section (Filters/Search) */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -117,7 +120,7 @@ header {
   max-width: 250px;
 }
 
-/* Archive List */
+/* Archive List Styles */
 .archive-list {
   display: flex;
   flex-direction: column;
@@ -226,7 +229,7 @@ footer {
   }
 }
 
-/* About Page Enhancements */
+/* About Page Styles */
 .about-container {
   background: #fff;
   padding: 2rem;
